@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    // adding quantity to user product list
     $('.product_qty_input').blur(function(){
         
         let $this = $(this);

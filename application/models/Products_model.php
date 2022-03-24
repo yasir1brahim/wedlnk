@@ -12,4 +12,23 @@ class Products_model extends CI_Model {
         
         return $query->result();
     }
+
+    public function mappedProductExist($product_id){
+        $query = $this->db->select('count(*) total')
+            ->where('user_id',auth()->id)
+            ->where('product_id',$product_id)
+            ->get(TBL_PRODUCTS_MAP);
+
+        return $query->row()->total;
+    }
+
+    public function getMappedProducts(){
+        $query = $this->db->select('products.*,products_map.*,products_map.price')
+        ->from(TBL_PRODUCTS)
+        ->join(TBL_PRODUCTS_MAP,'products.id=products_map.product_id')
+        ->where('products_map.user_id',auth()->id)
+        ->get();
+
+        return $query->result();
+    }
 }

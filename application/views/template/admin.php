@@ -68,10 +68,10 @@ $user_type = auth()->user_type;
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="<?=base_url('Products');?>">Products List</a>
                                     <?php if($user_type==ROLE_USER):?>
-                                    <!-- <a class="nav-link" href="<?=base_url('my-products-list');?>">
+                                    <a class="nav-link" href="<?=base_url('my-products-list');?>">
                                         My Products List&nbsp;&nbsp;<span class="badge bg-primary"><?=$mapped_products??$mapped_products;?></span>
 
-                                    </a> -->
+                                    </a>
                                     <?php endif;?>
                                 </nav>
                             </div>

@@ -57,3 +57,6 @@ $route['register-user'] = 'Register/register_user';
 $route['verify-user'] = 'Register/verify_user';
 $route['logout'] = 'Login/logout';
 $route['auth-user'] = 'Login/auth_user';
+// Products
+$route['add-to-my-list'] = 'Products/add_to_my_list';
+$route['my-products-list'] = 'Products/my_product_list';

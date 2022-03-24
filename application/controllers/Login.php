@@ -6,6 +6,10 @@ class Login extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model('Login_model');
+        $auth = auth();
+        if($auth && $this->router->method!='logout'){
+            redirect(auth()->user_type == ROLE_ADMIN ? 'Dashboard' : 'Products');
+        }
     }
     public function index(){
         $data['page'] = 'auth/login';
