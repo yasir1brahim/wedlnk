@@ -74,4 +74,18 @@ class CI_Model {
 		return get_instance()->$key;
 	}
 
+	public function save($data,$table,$id=NULL){
+		if(!$id){
+			$data['created_at'] = date('Y-m-d H:i:s');
+			$this->db->insert($table,$data);
+		} else {
+			$data['modified_at'] = date('Y-m-d H:i:s');
+			$this->db->set($data)
+			->where('id',$id)
+			->update($table);
+		}
+
+		return ['affect'=>$this->db->affected_rows(),'id'=>$this->db->insert_id()];
+	}
+
 }
