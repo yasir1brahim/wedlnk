@@ -23,6 +23,7 @@ class Login extends CI_Controller {
         if($this->form_validation->run()){
             if($user = $this->Login_model->authtenticate_user($email,md5($password))){
             $this->session->set_userdata('user',$user);
+            // User type redirect
             $url = $user->user_type==ROLE_ADMIN ? 'Dashboard' : 'Products';
             redirect($url);
         } else {

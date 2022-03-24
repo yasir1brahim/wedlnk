@@ -92,6 +92,6 @@ define('TBL_USERS','users');
 define('USER_VERIFED',1);
 define('STATUS_ENABLED',1);
 
-// User types
+// User types 
 define('ROLE_ADMIN',1);
 define('ROLE_USER',2);
