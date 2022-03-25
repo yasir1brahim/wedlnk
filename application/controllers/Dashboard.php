@@ -11,9 +11,12 @@ class Dashboard extends CI_Controller {
         if(!$auth OR $auth->user_type!=ROLE_ADMIN){
             redirect('Login');
         }
+        $this->load->model('Dashboard_model');
     }
 
     public function index(){
-
+       $data['users']['active_verified'] = $this->Dashboard_model->getActiveVerifiedUsers();
+       $data['page'] = 'dashboard/index';
+       $this->load->view('template/admin',$data);
     }
 }
