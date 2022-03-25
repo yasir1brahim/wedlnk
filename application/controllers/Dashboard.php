@@ -19,6 +19,9 @@ class Dashboard extends CI_Controller {
        $data['users']['by_active_products'] = $this->Dashboard_model->usersByActiveProduct()->total;
        $data['active_products'] = $this->Dashboard_model->activeProducts();
        $data['products_not_attached'] = $this->Dashboard_model->productsNotAttached();
+       $activeAttachedProducts = $this->Dashboard_model->activeAttachedProducts();
+       $data['qtyActiveAttachedProducts'] = array_sum(array_column($activeAttachedProducts,'qty'));
+
        $data['page'] = 'dashboard/index';
        $this->load->view('template/admin',$data);
     }

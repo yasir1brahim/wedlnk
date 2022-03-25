@@ -93,6 +93,8 @@ define('TBL_PRODUCTS_MAP','products_map');
 // Status
 define('USER_VERIFED',1);
 define('STATUS_ENABLED',1);
+define('IS_DELETED',1);
+define('IS_NOT_DELETED',0);
 
 // User types 
 define('ROLE_ADMIN',1);
