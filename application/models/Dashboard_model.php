@@ -31,4 +31,11 @@ class Dashboard_model extends CI_Model {
 
         return $query->row()->total;
     }
-}
+
+    public function productsNotAttached(){
+        $query = $this->db->query("select count(*) as total from products where id not in (select product_id from products_map)
+         and is_enabled='1' and is_deleted='0'");
+        return $query->row()->total;
+    }
+
+    }
