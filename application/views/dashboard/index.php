@@ -15,14 +15,14 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-xl-3 col-md-6">
+            <div class="col-xl-3 col-md-6">
                 <div class="card bg-success text-white mb-4">
                     <div class="card-body">Active & Verified Users by Product</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                     <h1><?=$users['by_active_products'];?></h1>
                     </div>
                 </div>
-            </div> -->
+            </div>
             <!-- <div class="col-xl-3 col-md-6">
                 <div class="card bg-primary text-white mb-4">
                     <div class="card-body">Active Products</div>
