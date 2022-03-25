@@ -21,7 +21,13 @@ class Dashboard extends CI_Controller {
        $data['products_not_attached'] = $this->Dashboard_model->productsNotAttached();
        $activeAttachedProducts = $this->Dashboard_model->activeAttachedProducts();
        $data['qtyActiveAttachedProducts'] = array_sum(array_column($activeAttachedProducts,'qty'));
+       // Summarized price for active and attached products
+       $sum_price_aa_prods = 0;
 
+       foreach($activeAttachedProducts as $activeAttachedProduct){
+        $sum_price_aa_prods+=$activeAttachedProduct->price*$activeAttachedProduct->qty;
+       }
+       $data['sum_price_aa_prods'] = $sum_price_aa_prods;
        $data['page'] = 'dashboard/index';
        $this->load->view('template/admin',$data);
     }

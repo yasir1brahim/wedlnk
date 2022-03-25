@@ -52,6 +52,14 @@
                     </div>
                 </div>
             </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-primary text-white mb-4">
+                    <div class="card-body">Qty. Active & Attached Products</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <h1><?=$sum_price_aa_prods;?></h1>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- <div class="row">
             <div class="col-xl-6">
