@@ -23,4 +23,12 @@ class Dashboard_model extends CI_Model {
 
         return $query->row();
     }
+
+    public function activeProducts(){
+        $query = $this->db->select('COUNT(*) as total')
+        ->where(['is_enabled'=>(string) STATUS_ENABLED,'is_deleted'=>'0'])
+        ->get(TBL_PRODUCTS);
+
+        return $query->row()->total;
+    }
 }
