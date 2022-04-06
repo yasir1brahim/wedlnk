@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access is allowed');
 
-class Exchange_rate extends CI_Controller {
+class Exchange_rate extends MY_Controller {
 
     private $accessKey ='';
 

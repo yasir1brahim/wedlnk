@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR die('No direct script access is allowed');
 
-class Products_model extends CI_Model {
+class Products_model extends MY_Model {
     public function get_products(){
         $auth = auth();
         if($auth->user_type==ROLE_ADMIN):
