@@ -8,8 +8,7 @@ class Register_model extends CI_Model {
         ->update(TBL_USERS);
 
         $user = $this->db->get_where(TBL_USERS,['verify_code'=>$verify_code])->row();
-
-        //return $this->db->affected_rows();
+        
         return (object) ['affect'=>$this->db->affected_rows(),'user'=>$user];
     }
 }

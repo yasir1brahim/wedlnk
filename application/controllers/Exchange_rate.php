@@ -18,12 +18,11 @@ class Exchange_rate extends CI_Controller {
     public function index(){
         $data['exchange_rates'] = $this->latest_exchange_rate();
         $data['page'] = 'exchange_rate/index';
-        //dd($data['exchange_rates']['rates']['USD']);
         $this->load->view('template/admin',$data);
     }
 
     public function latest_exchange_rate(){
-            // set API Endpoint and API key
+    // set API Endpoint and API key
     $endpoint = 'latest';
     $access_key = 'c21724cb44e00f47b0be71ff3d48639e';
 

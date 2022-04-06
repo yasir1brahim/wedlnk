@@ -16,7 +16,6 @@ class Products extends CI_Controller {
         if(!auth() OR !in_array($this->router->method,$this->methods_allowed[auth()->user_type])){
             redirect('Login');
         }
-        //dd($this->session->all_userdata());
         $this->load->model('Products_model');
     }
 
@@ -34,13 +33,11 @@ class Products extends CI_Controller {
         $price = $this->input->get('price');
 
         $mappedProduct = $this->Products_model->mappedProductExist($product_id);
-        //$product_ids = array_column((array) $my_products,'product_id');
         if(empty($mappedProduct)){
             $state = 'added';
             $state_error = 'adding';
             $product = ['user_id'=>auth()->id,'product_id'=>$product_id,'qty'=>$qty,'price'=>$price];
             $this->db->insert(TBL_PRODUCTS_MAP,$product);
-            //$this->session->set_flashdata('message',['class'=>'success','message'=>'Product added to your list.']);
         } else {
             $state = 'updated';
             $state_error = 'updating';

@@ -1,5 +1,4 @@
 <?php
-//dd($products);
 $user_type = auth()->user_type;
  ?>
 <main>
