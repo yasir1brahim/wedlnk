@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access is allowed');
 
-class Products extends CI_Controller {
+class Products extends MY_Controller {
 
     private $methods_allowed = [
         ROLE_USER => [

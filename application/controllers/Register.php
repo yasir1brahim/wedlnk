@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR die('No direct script access is allowed');
 
-class Register extends CI_Controller {
+class Register extends MY_Controller {
 
     public function __construct(){
         parent::__construct();
