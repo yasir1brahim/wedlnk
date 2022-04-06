@@ -83,6 +83,6 @@ class Migration_products extends CI_Migration {
 
     public function down()
     {
-        $this->dbforge->drop_table('blog');
+        $this->dbforge->drop_table(TBL_PRODUCTS);
     }
 }
