@@ -27,7 +27,6 @@ class Products extends MY_Controller {
     }
 
     public function add_to_my_list(){
-        if(!auth()->user_type!=ROLE_USER) redirect('Products');
         $product_id = $this->input->get('id');
         $qty = $this->input->get('qty');
         $price = $this->input->get('price');

@@ -65,6 +65,9 @@ class Register extends MY_Controller {
          $this->session->set_userdata('user',$res->user);
          $this->session->set_flashdata('message',['class'=>'success','message'=>'Your email is verified now.']);
          redirect('Products');
+     } else {
+        $this->session->set_flashdata('message',['class'=>'danger','message'=>'Verification code expired.']);
+         redirect('Login');
      }
      
     }
