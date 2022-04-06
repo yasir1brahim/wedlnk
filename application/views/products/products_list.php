@@ -78,7 +78,6 @@ $user_type = auth()->user_type;
                       <?php if($user_type==ROLE_USER): ?>
                       <td>
                           <a class="btn btn-success" href="<?=base_url('add-to-my-list?qty=1&price='.$product->price.'&id='.$product->id);?>"> Add to My List</a>
-                          <!-- <button class="btn btn-danger">Delete</button> -->
                       </td>
                       <?php endif;?>
                       <tr>
