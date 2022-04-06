@@ -16,9 +16,9 @@ class Dashboard extends MY_Controller {
 
     public function index(){
        $data['users']['active_verified'] = $this->Dashboard_model->getActiveVerifiedUsers();
-       $data['users']['by_active_products'] = $this->Dashboard_model->usersByActiveProduct()->total;
+       $data['users']['by_active_products'] = count($this->Dashboard_model->usersByActiveProduct());
        $data['active_products'] = $this->Dashboard_model->activeProducts();
-       $data['products_not_attached'] = $this->Dashboard_model->productsNotAttached();
+       $data['products_not_attached'] = count($this->Dashboard_model->productsNotAttached());
        $activeAttachedProducts = $this->Dashboard_model->activeAttachedProducts();
        $data['qtyActiveAttachedProducts'] = array_sum(array_column($activeAttachedProducts,'qty'));
        // Summarized price for active and attached products

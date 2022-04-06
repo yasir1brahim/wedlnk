@@ -11,17 +11,13 @@ class Dashboard_model extends MY_Model {
     }
 
     public function usersByActiveProduct(){
-        $query = $this->db->select('DISTINCT(user_id) uid')
-        ->where('is_deleted','0')
+        $query = $this->db->select('DISTINCT(pm.user_id) uid')
+        ->from(TBL_PRODUCTS_MAP.' pm')
+        ->join(TBL_USERS.' u','pm.user_id=u.id')
+        ->where(['pm.is_deleted'=>(string) IS_NOT_DELETED,'u.is_deleted'=>(string) IS_NOT_DELETED])
         ->get(TBL_PRODUCTS_MAP);
 
-        $user_ids = array_column($query->result_array(),'uid');
-        $query = $this->db->select('count(*) as total')
-        ->where_in('id',$user_ids)
-        ->where(['user_type'=>(string) ROLE_USER,'is_verified'=>(string) USER_VERIFED,'is_deleted'=>'0'])
-        ->get(TBL_USERS);
-
-        return $query->row();
+        return $query->result();
     }
 
     public function activeProducts(){
@@ -33,9 +29,13 @@ class Dashboard_model extends MY_Model {
     }
 
     public function productsNotAttached(){
-        $query = $this->db->query("select count(*) as total from products where id not in (select product_id from products_map)
-         and is_enabled='1' and is_deleted='0'");
-        return $query->row()->total;
+        $query = $this->db->select('p.id,pm.id')
+        ->from(TBL_PRODUCTS.' p')
+        ->join(TBL_PRODUCTS_MAP.' pm','p.id=pm.product_id','left')
+        ->where('pm.id',NULL)
+        ->get();
+
+        return $query->result();
     }
 
     public function activeAttachedProducts(){
