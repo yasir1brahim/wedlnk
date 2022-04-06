@@ -14,12 +14,12 @@ class Register extends CI_Controller {
 
     public function register_user(){
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('first_name','First Name','required');
-            $this->form_validation->set_rules('last_name','Last Name','required');
-            $this->form_validation->set_rules('email','Email','required|valid_email');
+            $this->form_validation->set_rules('first_name','First Name','required|alpha|min_length[3]|max_length[30]');
+            $this->form_validation->set_rules('last_name','Last Name','required|alpha|min_length[3]|max_length[30]');
+            $this->form_validation->set_rules('email','Email','required|valid_email|is_unique['.TBL_USERS.'.email]|max_length[50]');
 
-            $this->form_validation->set_rules('password','Password','required|min_length[6]');
-            $this->form_validation->set_rules('confirm_password','Confirm Password','required|min_length[6]|matches[password]');
+            $this->form_validation->set_rules('password','Password','required|min_length[6]|password_check[1,1,1]|max_length[30]');
+            $this->form_validation->set_rules('confirm_password','Confirm Password','required|min_length[6]|max_length[30]|matches[password]');
             $this->form_validation->set_error_delimiters('<p style="color:red">','</p>');
 
             if($this->form_validation->run()){
