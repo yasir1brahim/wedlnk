@@ -39,7 +39,6 @@ class Dashboard_model extends CI_Model {
     }
 
     public function activeAttachedProducts(){
-        //select pm.user_id,pm.product_id,pm.price,pm.qty as total from products p join products_map pm on p.id = pm.product_id where p.is_enabled='1' and p.is_deleted='0' and pm.is_deleted='0';
         $query = $this->db->select('pm.user_id,pm.product_id,pm.price,pm.qty')
         ->from(TBL_PRODUCTS.' p')
         ->join(TBL_PRODUCTS_MAP.' pm','p.id=pm.product_id')
