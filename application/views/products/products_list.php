@@ -67,7 +67,7 @@ $user_type = auth()->user_type;
                         <?php if($user_type==ROLE_USER):?>
                         <td><input type="number" value="1" class="product_qty_input"></td>
                         <?php endif;?>
-                        <td><?=$product->price;?>$</td>
+                        <td>$ <?=$product->price;?></td>
                       <td>
                       <span class="badge bg-<?=$product->is_enabled ? 'success':'danger';?>"><?=$product->is_enabled ? 'Active':'Deactive';?></span>
                       </td>
