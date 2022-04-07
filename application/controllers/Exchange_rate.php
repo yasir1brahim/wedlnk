@@ -25,9 +25,11 @@ class Exchange_rate extends MY_Controller {
     // set API Endpoint and API key
     $endpoint = 'latest';
     $access_key = 'c21724cb44e00f47b0be71ff3d48639e';
+    $base = 'EUR';
+    $symbols = 'USD,RON';
 
     // Initialize CURL:
-    $ch = curl_init('http://api.exchangeratesapi.io/v1/'.$endpoint.'?access_key='.$access_key.'');
+    $ch = curl_init('http://api.exchangeratesapi.io/v1/'.$endpoint.'?access_key='.$access_key.'&base='.$base.'&symbols='.$symbols);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
     // Store the data:
