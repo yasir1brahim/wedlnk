@@ -45,7 +45,7 @@
                 <div class="card bg-success text-white mb-4">
                     <div class="card-body">Qty. Active & Attached Products</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <h1><?=$qtyActiveAttachedProducts;?></h1>
+                        <h1><?=$qtyActiveAttachedProducts->qty??$qtyActiveAttachedProducts->qty;?></h1>
                        
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                 <div class="card bg-primary text-white mb-4">
                     <div class="card-body">Amount Sum for Active Products Qty.</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <h1><?=$sum_price_aa_prods;?></h1>
+                        <h1><?=$sum_price_aa_prods->amount??$sum_price_aa_prods->amount;?></h1>
                     </div>
                 </div>
             </div>
@@ -83,20 +83,11 @@
                         </tr>
                     </tfoot>
                 <tbody>
-                    <?php
-                    $i = 0;
-                    foreach($user_products as $user_id=>$user_product):
-                    $user = $this->Dashboard_model->getSpecificColsv2([
-                        'columns'=>'first_name,last_name',
-                        'condition'=>['id'=>$user_id],
-                        'table'=>TBL_USERS,
-                        'row'=>TRUE
-                    ]);
-                    ?>
+                    <?php foreach($user_products as $key=>$user_product): ?>
                     <tr>
-                        <td><?=++$i;?></td>
-                        <td><?=$user->first_name.' '.$user->last_name;?></td>
-                        <td><?=array_sum($user_product);?></td>
+                        <td><?=++$key;?></td>
+                        <td><?=$user_product->first_name.' '.$user_product->last_name;?></td>
+                        <td><?=$user_product->amount;?></td>
                     </tr>
                     <?php endforeach;?>
                 </tbody>

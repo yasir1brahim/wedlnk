@@ -39,13 +39,34 @@ class Dashboard_model extends MY_Model {
     }
 
     public function activeAttachedProducts(){
-        $query = $this->db->select('pm.user_id,pm.product_id,pm.price,pm.qty')
+        $query = $this->db->select('sum(pm.qty) as qty')
         ->from(TBL_PRODUCTS.' p')
         ->join(TBL_PRODUCTS_MAP.' pm','p.id=pm.product_id')
         ->where(['p.is_enabled'=>(string) STATUS_ENABLED,'p.is_deleted'=>(string) IS_NOT_DELETED,'pm.is_deleted'=>(string) IS_NOT_DELETED])
         ->get();
 
-        return $query->result();
+        return $query->row();
+        }
+
+        public function amountSumActiveAttachedProducts(){
+            $query = $this->db->select('sum(pm.price*pm.qty) as amount')
+            ->from(TBL_PRODUCTS.' p')
+            ->join(TBL_PRODUCTS_MAP.' pm','p.id=pm.product_id')
+            ->where(['p.is_enabled'=>(string) STATUS_ENABLED,'p.is_deleted'=>(string) IS_NOT_DELETED,'pm.is_deleted'=>(string) IS_NOT_DELETED])
+            ->get();
+
+            return $query->row();
+            }
+        public function summarized_price_users(){
+            $query = $this->db->select('u.first_name,u.last_name,sum(pm.price*pm.qty) as amount')
+            ->from(TBL_PRODUCTS.' p')
+            ->join(TBL_PRODUCTS_MAP.' pm','p.id=pm.product_id')
+            ->join(TBL_USERS.' u','pm.user_id=u.id')
+            ->where(['p.is_enabled'=>(string) STATUS_ENABLED,'p.is_deleted'=>(string) IS_NOT_DELETED,'pm.is_deleted'=>(string) IS_NOT_DELETED])
+            ->group_by('pm.user_id')
+            ->get();
+
+            return $query->result();
         }
 
     }

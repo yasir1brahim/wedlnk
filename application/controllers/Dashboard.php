@@ -19,24 +19,10 @@ class Dashboard extends MY_Controller {
        $data['users']['by_active_products'] = count($this->Dashboard_model->usersByActiveProduct());
        $data['active_products'] = $this->Dashboard_model->activeProducts();
        $data['products_not_attached'] = count($this->Dashboard_model->productsNotAttached());
-       $activeAttachedProducts = $this->Dashboard_model->activeAttachedProducts();
-       $data['qtyActiveAttachedProducts'] = array_sum(array_column($activeAttachedProducts,'qty'));
+       $data['qtyActiveAttachedProducts'] = $this->Dashboard_model->activeAttachedProducts();
        // Summarized price for active and attached products
-       $sum_price_aa_prods = 0;
-       $userProducts = [];
-
-       foreach($activeAttachedProducts as $activeAttachedProduct){
-        $sum_price_aa_prods+=$activeAttachedProduct->price*$activeAttachedProduct->qty;
-
-        if(!array_key_exists($activeAttachedProduct->user_id,$userProducts)){
-            $userProducts[$activeAttachedProduct->user_id] = [$activeAttachedProduct->price];
-         } else {
-            $userProducts[$activeAttachedProduct->user_id][] = $activeAttachedProduct->price;
-         }
-
-       }
-       $data['sum_price_aa_prods'] = $sum_price_aa_prods;
-       $data['user_products'] = $userProducts;
+       $data['sum_price_aa_prods'] = $this->Dashboard_model->amountSumActiveAttachedProducts();
+       $data['user_products'] = $this->Dashboard_model->summarized_price_users();
        $data['page'] = 'dashboard/index';
        $this->load->view('template/admin',$data);
     }
